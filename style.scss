@@ -1,0 +1,198 @@
+$white: #F7F7F7;
+$dark-green: #32502E;
+$light-yellow: #ffd885;
+$orange: #F58634;
+
+// =============== GLOBAL STYLE =============================
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+img {
+    width: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+// =============== MAIN =============================
+.main {
+    position: relative;
+    &__content {
+        text-align: center;
+        padding: 2rem 0;
+        border-bottom: 2px solid $dark-green;
+    }
+    &__title {
+        font-size: 2rem;
+        padding-bottom:  .5rem;
+        color: $dark-green;
+    }
+    &__button {
+        display: inline-block;
+        background-color: $light-yellow;
+        color: $dark-green;
+        padding: .3em 1em;
+        letter-spacing: 1px;
+        border-radius: 3px;
+    }
+}
+
+// =============== NAV =============================
+
+.navbar {
+    padding: 1rem 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__wrapper {
+        position: absolute;
+        width: 100%;
+    }
+
+    &__group {
+        color: $light-yellow;
+        text-decoration: none;
+        font-weight: 700;
+    }
+}
+
+.bars {
+    &__line {
+        height: .1rem;
+        width: 15px;
+        background-color: $white;
+        transform-origin: 100%;
+        transition: all 0.4s ease;
+    }
+    &__line + .bars__line {
+        margin-top: .2rem;
+    }
+}
+
+// =============== ASIDE =============================
+.aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 99;
+    transition: all 0.4s ease;
+
+    background-color: $white;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    &__wrapper {
+        background-color: $dark-green;
+        padding: 1rem 0;
+        box-shadow: 5px -1px 5px #222;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__title {
+        font-weight: 700;
+        text-decoration: none;
+        color: $orange;
+    }
+    &__list {
+        padding: 1rem 0;
+    }
+    &__links {
+        display: block;
+        padding: .5rem 0 .25rem;
+        text-decoration: none;
+        letter-spacing: .5px;
+        border-bottom: 1px solid $dark-green;
+        color: #004a8b;
+    }
+    &__lines {
+        // background-color: #021f00;
+        transition-delay: 0.3s;
+    }
+}
+
+// ========= SLIDE 
+
+.slide-navbar {
+    & .bars__line:first-child {
+        transform: rotate(-45deg);
+    }
+    
+    & .bars__line:last-child {
+        transform: rotate(45deg);
+    }
+
+    & .bars__line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .aside {
+        transform: translateX(0%);
+        box-shadow: -1px 0 5px $dark-green;
+    }
+
+}
+
+// =============== SECTION =============================
+section {
+    padding: 2rem 0;
+}
+
+article {
+    border-bottom: 1px solid $dark-green;
+    padding: 2rem 0 1rem;
+    & h2 {
+        margin: 1rem 0 .75rem;
+        color: $dark-green;
+    }
+    & p {
+        text-align: justify;
+        text-indent: 4rem;
+    }
+}
+
+article:last-child {
+    border: none;
+}
+
+.footer {
+    // border: 1px solid red;
+    padding: 2rem 0;
+    background-color: $light-yellow;
+    &__title {
+        font-size: 1.2rem;
+        margin-bottom: .5rem;
+        color: $dark-green;
+    }
+    &__links {
+        display: block;
+        text-decoration: none;
+        margin-bottom: .25rem;
+        font-size: .875rem;
+        color: #004a87;
+        letter-spacing: .5px;
+    }
+}
