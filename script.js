@@ -60,7 +60,6 @@ scrollLinks.forEach(link => {
 
         header.classList.remove('show-navbar');
         navbar.style.height = `0px`;
-
     });
 });
 
