@@ -1,9 +1,14 @@
 $white: #F7F7F7;
+$dark-white: #dfe0df;
+$black: #222;
 $dark-green: #32502E;
 $light-yellow: #ffd885;
 $orange: #F58634;
 
 // =============== GLOBAL STYLE =============================
+html {
+    scroll-behavior: smooth;
+}
 
 *, ::before, ::after {
     box-sizing: border-box;
@@ -27,9 +32,52 @@ ul {
     list-style: none;
 }
 
+.main-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .container {
     width: 90%;
     margin: 0 auto;
+}
+
+// =============== MODAL =============================
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem 3rem;
+    background-color: $white;
+    box-shadow: 0 0 5px $black;
+    border-radius: 5px;
+    z-index: 999;
+    width: 90%;
+    max-width: 450px;
+    display: none;
+
+    text-align: center;
+    &__text {
+        font-size: 1rem;
+    }
+    &__button {
+        padding: .75em 2em;
+        background-color: $light-yellow;
+        color: $dark-green;
+        border-radius: 3px;
+        margin-top: 1rem;
+        letter-spacing: 1px;
+        transition: all 0.4s ease;
+    }
+    &__button:hover {
+        background-color: $dark-green;
+        color: $light-yellow;
+    }
+}
+
+.show-modal {
+    display: block;
 }
 
 // =============== MAIN =============================
@@ -49,30 +97,35 @@ ul {
         display: inline-block;
         background-color: $light-yellow;
         color: $dark-green;
-        padding: .3em 1em;
+        padding: .75em 2em;
         letter-spacing: 1px;
         border-radius: 3px;
+        transition: all 0.4s ease;
+    }
+    &__button:hover {
+        background-color: $dark-green;
+        color: $light-yellow;
     }
 }
 
-// =============== NAV =============================
+// =============== HEADER =============================
 
-.navbar {
-    padding: 1rem 0;
+.main__header {
+    width: 100%;
+    z-index: 99999;
+    background-color: $white;
+    box-shadow: 0 0 3px #222;
+}
 
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &__wrapper {
-        position: absolute;
-        width: 100%;
-    }
-
-    &__group {
-        color: $light-yellow;
-        text-decoration: none;
+    padding: 1rem 0;
+    &__title {
         font-weight: 700;
+        color: $orange;
+        text-decoration: none;
     }
 }
 
@@ -80,7 +133,7 @@ ul {
     &__line {
         height: .1rem;
         width: 15px;
-        background-color: $white;
+        background-color: $black;
         transform-origin: 100%;
         transition: all 0.4s ease;
     }
@@ -89,71 +142,39 @@ ul {
     }
 }
 
-// =============== ASIDE =============================
-.aside {
-    position: fixed;
-    top: 0;
-    right: 0;
-    transform: translateX(100%);
-    z-index: 99;
+// =============== NAVBAR =============================
+.navbar {
+    height: 0;
+    overflow: hidden;
     transition: all 0.4s ease;
-
-    background-color: $white;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 450px;
-    &__wrapper {
-        background-color: $dark-green;
-        padding: 1rem 0;
-        box-shadow: 5px -1px 5px #222;
-    }
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    &__title {
-        font-weight: 700;
-        text-decoration: none;
-        color: $orange;
-    }
-    &__list {
-        padding: 1rem 0;
-    }
-    &__links {
+    &__list a {
         display: block;
-        padding: .5rem 0 .25rem;
         text-decoration: none;
-        letter-spacing: .5px;
-        border-bottom: 1px solid $dark-green;
-        color: #004a8b;
-    }
-    &__lines {
-        // background-color: #021f00;
-        transition-delay: 0.3s;
+        color: $dark-green;
+        padding: .5rem 0;
+        border-top: 1px solid $black;
     }
 }
 
-// ========= SLIDE 
-
-.slide-navbar {
+.show-navbar {
+    & .header {
+        border-bottom: 2px double $black;
+    }
     & .bars__line:first-child {
         transform: rotate(-45deg);
     }
-    
     & .bars__line:last-child {
         transform: rotate(45deg);
     }
-
     & .bars__line:nth-child(2) {
         opacity: 0;
     }
+}
 
-    .aside {
-        transform: translateX(0%);
-        box-shadow: -1px 0 5px $dark-green;
-    }
-
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 // =============== SECTION =============================
@@ -172,14 +193,14 @@ article {
         text-align: justify;
         text-indent: 4rem;
     }
+    &:last-child {
+        border: none;
+    }
 }
 
-article:last-child {
-    border: none;
-}
+// =============== FOOTER =============================
 
 .footer {
-    // border: 1px solid red;
     padding: 2rem 0;
     background-color: $light-yellow;
     &__title {
@@ -192,7 +213,67 @@ article:last-child {
         text-decoration: none;
         margin-bottom: .25rem;
         font-size: .875rem;
-        color: #004a87;
+        color: $black;
         letter-spacing: .5px;
     }
+}
+
+@media (min-width: 768px) {
+
+    // =============== MODAL =============================
+    .modal {
+        padding: 4rem 3rem;
+    }
+
+    // =============== HEADER =============================
+
+    .header {
+        padding: 1.25rem 0;
+        &__title {
+            font-size: 1.25rem;
+        }
+    }
+
+    // =============== MAIN =============================
+
+    .main {
+        height: 350px;
+        background-image: url("./images/pexels-veeterzy-38136.jpg");
+        object-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &__image {
+            max-height: 100vh;
+            opacity: 0;
+        }
+        &__content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+        &__title {
+            color: $white;
+            font-size: 4rem;
+        }
+        &__button {
+            font-size: 1rem;
+        }
+    }
+
+    // =============== SECTION =============================
+
+    section {
+        width: 85%;
+        margin: 0 auto;
+        & img {
+            display: block;
+            width: 300px;
+            float: right;
+            margin: 1.5rem 0 0 1rem;
+            border-radius: 5px;
+        }
+    }
+
 }
